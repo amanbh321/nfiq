@@ -56,17 +56,16 @@ public class Results extends MindTct implements IResults {
 		int mx;
 		int my;
 		int mapIndex;
-		FileWriter myWriter = new FileWriter(file.getAbsoluteFile());
-		/* Simply print the map matrix out to the specified file pointer. */
-		mapIndex = 0;
-		for (my = 0; my < mapHeight; my++) {
-			for (mx = 0; mx < mapWidth; mx++) {
-				myWriter.write(String.format("%2d", oMap.get(mapIndex++)));
+		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())) {
+			/* Simply print the map matrix out to the specified file pointer. */
+			mapIndex = 0;
+			for (my = 0; my < mapHeight; my++) {
+				for (mx = 0; mx < mapWidth; mx++) {
+					myWriter.write(String.format("%2d", oMap.get(mapIndex++)));
+				}
+				myWriter.write("\n");
 			}
-			myWriter.write("\n");
 		}
-		myWriter.flush();
-		myWriter.close();
 	}
 
 	public int drawInputBlockImageMap(AtomicIntegerArray oInputBlockImageMap, int mapWidth, int mapHeight,

@@ -1181,25 +1181,27 @@ public class RemoveMinutia extends MindTct implements IRemoveMinutia {
 						for (j = 0; j < num.get(); j++) {
 							/* If B path contains pixel opposite minutia type ... */
 							if (binarizedImageData[(yList[j] * imageWidth) + xList[j]] != oMinutia.get().getType()) {
-								/* Compute ratio of A & B path lengths. */
-								ratio = bDist / aDist;
-								/* Need to truncate precision so that answers are */
-								/* consistent on different computer architectures. */
-								ratio = getDefs().truncDoublePrecision(ratio, ILfs.TRUNC_SCALE);
-								/* If the B path is sufficiently longer than A path ... */
-								if (ratio > lfsParams.getMinMalformationRatio()) {
-									/* Remove the malformation minutia. */
-									/* Then remove the minutia. */
-									if (isShowLogs())
-										logger.info("{},{} RMMAL3", oMinutia.get().getX(), oMinutia.get().getY());
+								if (aDist != 0.0) {
+									/* Compute ratio of A & B path lengths. */
+									ratio = bDist / aDist;
+									/* Need to truncate precision so that answers are */
+									/* consistent on different computer architectures. */
+									ratio = getDefs().truncDoublePrecision(ratio, ILfs.TRUNC_SCALE);
+									/* If the B path is sufficiently longer than A path ... */
+									if (ratio > lfsParams.getMinMalformationRatio()) {
+										/* Remove the malformation minutia. */
+										/* Then remove the minutia. */
+										if (isShowLogs())
+											logger.info("{},{} RMMAL3", oMinutia.get().getX(), oMinutia.get().getY());
 
-									ret.set(getMinutiaHelper().removeMinutia(minutiaIndex, oMinutiae));
-									if (ret.get() != ILfs.FALSE) {
-										/* If system error, return error code. */
-										return (ret.get());
+										ret.set(getMinutiaHelper().removeMinutia(minutiaIndex, oMinutiae));
+										if (ret.get() != ILfs.FALSE) {
+											/* If system error, return error code. */
+											return (ret.get());
+										}
+										/* Break out of FOR loop. */
+										break;
 									}
-									/* Break out of FOR loop. */
-									break;
 								}
 							}
 						}
