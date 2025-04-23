@@ -343,6 +343,11 @@ public class Quality extends MindTct implements IQuality {
 			}
 		}
 
+		if (n == 0) {
+		    oMean.set(0.0);
+		    oStDev.set(0.0);
+		    return;
+		}
 		/* Mean = Sum(X[i])/N */
 		oMean.set(sumX / (double) n);
 		/* Stdev = sqrt((Sum(X[i]^2)/N) - Mean^2) */
