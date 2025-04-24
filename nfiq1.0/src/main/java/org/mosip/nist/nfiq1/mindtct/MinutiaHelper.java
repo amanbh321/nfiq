@@ -21,21 +21,16 @@ import org.slf4j.LoggerFactory;
 public class MinutiaHelper extends MindTct implements IMinutia {
 	private static final Logger logger = LoggerFactory.getLogger(MinutiaHelper.class);
 
-	private static MinutiaHelper instance;
-
 	private MinutiaHelper() {
 		super();
 	}
 
+	private static class Holder {
+		private static final MinutiaHelper INSTANCE = new MinutiaHelper();
+	}
+
 	public static synchronized MinutiaHelper getInstance() {
-		if (instance == null) {
-			synchronized (MinutiaHelper.class) {
-				if (instance == null) {
-					instance = new MinutiaHelper();
-				}
-			}
-		}
-		return instance;
+		return Holder.INSTANCE;
 	}
 
 	public MatchPattern getMatchPattern() {
@@ -577,7 +572,7 @@ public class MinutiaHelper extends MindTct implements IMinutia {
 	 * oMinutiae - list of minutia structures Output: file - open file pointer
 	 **************************************************************************/
 	public void dumpMinutiae(File file, AtomicReference<Minutiae> oMinutiae) {
-		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())){
+		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())) {
 			myWriter.write(MessageFormat.format("{0} Minutiae Detected", oMinutiae.get().getNum()));
 			int i, j;
 			for (i = 0; i < oMinutiae.get().getNum(); i++) {
@@ -625,7 +620,7 @@ public class MinutiaHelper extends MindTct implements IMinutia {
 	 * file pointer
 	 **************************************************************************/
 	public void dumpMinutiaePoints(File file, final AtomicReference<Minutiae> oMinutiae) {
-		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())){
+		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())) {
 			/* First line in the output file contians the number of minutia */
 			/* points to be written to the file. */
 			myWriter.write(MessageFormat.format("{0}", oMinutiae.get().getNum()));
@@ -653,7 +648,7 @@ public class MinutiaHelper extends MindTct implements IMinutia {
 	 * to be reported Output: file - open file pointer
 	 **************************************************************************/
 	public void dumpReliableMinutiaePoints(File file, AtomicReference<Minutiae> oMinutiae, final double reliability) {
-		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())){
+		try (FileWriter myWriter = new FileWriter(file.getAbsoluteFile())) {
 			int i;
 			int count;
 
@@ -2979,120 +2974,70 @@ public class MinutiaHelper extends MindTct implements IMinutia {
 		/* Start direction out with IMAP value. */
 		iDir = nInputBlockImageMapValue;
 
+		boolean isQuadrantI = (nInputBlockImageMapValue <= (nDirs >> 1));
+
+		boolean isHorizontal = scanDir == ILfs.SCAN_HORIZONTAL;
+		boolean isAppearing = appearing == ILfs.APPEARING;
+
+		// Determine if direction needs to be adjusted
+		boolean addOffset = false;
+
 		/* NOTE! */
 		/* The logic in this routine should hold whether for ridge endings */
 		/* or for bifurcations. The examples in the comments show ridge */
 		/* ending conditions only. */
 
-		/* CASE I : Ridge flow in Quadrant I; directions [0..8] */
-		if (nInputBlockImageMapValue <= (nDirs >> 1)) {
-			/* I.A: HORIZONTAL scan */
-			if (scanDir == ILfs.SCAN_HORIZONTAL) {
-				/* I.A.1: Appearing Minutia */
-				if (appearing == ILfs.APPEARING) {
-					/* Ex. 0 0 0 */
-					/* 0 1 0 */
-					/* ? ? */
-					/* Ridge flow is up and to the right, whereas */
-					/* actual ridge is running down and to the */
-					/* left. */
-					/* Thus: HORIZONTAL : appearing : should be */
-					/* OPPOSITE the ridge flow direction. */
-					iDir += nDirs;
-				}
-				/* Otherwise: */
-				/* I.A.2: Disappearing Minutia */
-				/* Ex. ? ? */
-				/* 0 1 0 */
-				/* 0 0 0 */
-				/* Ridge flow is up and to the right, which */
-				/* should be SAME direction from which ridge */
-				/* is projecting. */
-				/* Thus: HORIZONTAL : disappearing : should */
-				/* be the same as ridge flow direction. */
-			} // End if HORIZONTAL scan
-			/* Otherwise: */
-			/* I.B: VERTICAL scan */
-			else {
-				/* I.B.1: Disappearing Minutia */
-				if (appearing != ILfs.APPEARING) {
-					/* Ex. 0 0 */
-					/* ? 1 0 */
-					/* ? 0 0 */
-					/* Ridge flow is up and to the right, whereas */
-					/* actual ridge is projecting down and to the */
-					/* left. */
-					/* Thus: VERTICAL : disappearing : should be */
-					/* OPPOSITE the ridge flow direction. */
-					iDir += nDirs;
-				}
-				/* Otherwise: */
-				/* I.B.2: Appearing Minutia */
-				/* Ex. 0 0 ? */
-				/* 0 1 ? */
-				/* 0 0 */
-				/* Ridge flow is up and to the right, which */
-				/* should be SAME direction the ridge is */
-				/* running. */
-				/* Thus: VERTICAL : appearing : should be */
-				/* be the same as ridge flow direction. */
-			} // End else VERTICAL scan
-		} // End if Quadrant I
-		/* Otherwise: */
-		/* CASE II : Ridge flow in Quadrant II; directions [9..15] */
-		else {
-			/* II.A: HORIZONTAL scan */
-			if (scanDir == ILfs.SCAN_HORIZONTAL) {
-				/* II.A.1: Disappearing Minutia */
-				if (appearing != ILfs.APPEARING) {
-					/* Ex. ? ? */
-					/* 0 1 0 */
-					/* 0 0 0 */
-					/* Ridge flow is down and to the right, */
-					/* whereas actual ridge is running up and to */
-					/* the left. */
-					/* Thus: HORIZONTAL : disappearing : should */
-					/* be OPPOSITE the ridge flow direction. */
-					iDir += nDirs;
-				}
-				/* Otherwise: */
-				/* II.A.2: Appearing Minutia */
-				/* Ex. 0 0 0 */
-				/* 0 1 0 */
-				/* ? ? */
-				/* Ridge flow is down and to the right, which */
-				/* should be same direction from which ridge */
-				/* is projecting. */
-				/* Thus: HORIZONTAL : appearing : should be */
-				/* the SAME as ridge flow direction. */
-			} // End if HORIZONTAL scan
-			/* Otherwise: */
-			/* II.B: VERTICAL scan */
-			else {
-				/* II.B.1: Disappearing Minutia */
-				if (appearing != ILfs.APPEARING) {
-					/* Ex. ? 0 0 */
-					/* ? 1 0 */
-					/* 0 0 */
-					/* Ridge flow is down and to the right, */
-					/* whereas actual ridge is running up and to */
-					/* the left. */
-					/* Thus: VERTICAL : disappearing : should be */
-					/* OPPOSITE the ridge flow direction. */
-					iDir += nDirs;
-				}
-				/* Otherwise: */
-				/* II.B.2: Appearing Minutia */
-				/* Ex. 0 0 */
-				/* 0 1 ? */
-				/* 0 0 ? */
-				/* Ridge flow is down and to the right, which */
-				/* should be same direction the ridge is */
-				/* projecting. */
-				/* Thus: VERTICAL : appearing : should be */
-				/* be the SAME as ridge flow direction. */
-			} // End else VERTICAL scan
-		} // End else Quadrant II
+		if (isQuadrantI) {
+			// CASE I
+			if ((isHorizontal && isAppearing) || (!isHorizontal && !isAppearing)) {
+				addOffset = true;
+			}
+		} else {
+			// CASE II
+			if ((isHorizontal && !isAppearing) || (!isHorizontal && !isAppearing)) {
+				addOffset = true;
+			}
+		}
+
+		/*
+		 * CASE I : Ridge flow in Quadrant I; directions [0..8] if (isQuadrantI) { I.A:
+		 * HORIZONTAL scan if (scanDir == ILfs.SCAN_HORIZONTAL) { I.A.1: Appearing
+		 * Minutia if (appearing == ILfs.APPEARING) { Ex. 0 0 0 0 1 0 ? ? Ridge flow is
+		 * up and to the right, whereas actual ridge is running down and to the left.
+		 * Thus: HORIZONTAL : appearing : should be OPPOSITE the ridge flow direction.
+		 * iDir += nDirs; } Otherwise: I.A.2: Disappearing Minutia Ex. ? ? 0 1 0 0 0 0
+		 * Ridge flow is up and to the right, which should be SAME direction from which
+		 * ridge is projecting. Thus: HORIZONTAL : disappearing : should be the same as
+		 * ridge flow direction. } // End if HORIZONTAL scan Otherwise: I.B: VERTICAL
+		 * scan else { I.B.1: Disappearing Minutia if (appearing != ILfs.APPEARING) {
+		 * Ex. 0 0 ? 1 0 ? 0 0 Ridge flow is up and to the right, whereas actual ridge
+		 * is projecting down and to the left. Thus: VERTICAL : disappearing : should be
+		 * OPPOSITE the ridge flow direction. iDir += nDirs; } Otherwise: I.B.2:
+		 * Appearing Minutia Ex. 0 0 ? 0 1 ? 0 0 Ridge flow is up and to the right,
+		 * which should be SAME direction the ridge is running. Thus: VERTICAL :
+		 * appearing : should be be the same as ridge flow direction. } // End else
+		 * VERTICAL scan } // End if Quadrant I Otherwise: CASE II : Ridge flow in
+		 * Quadrant II; directions [9..15] else { II.A: HORIZONTAL scan if (scanDir ==
+		 * ILfs.SCAN_HORIZONTAL) { II.A.1: Disappearing Minutia if (appearing !=
+		 * ILfs.APPEARING) { Ex. ? ? 0 1 0 0 0 0 Ridge flow is down and to the right,
+		 * whereas actual ridge is running up and to the left. Thus: HORIZONTAL :
+		 * disappearing : should be OPPOSITE the ridge flow direction. iDir += nDirs; }
+		 * Otherwise: II.A.2: Appearing Minutia Ex. 0 0 0 0 1 0 ? ? Ridge flow is down
+		 * and to the right, which should be same direction from which ridge is
+		 * projecting. Thus: HORIZONTAL : appearing : should be the SAME as ridge flow
+		 * direction. } // End if HORIZONTAL scan Otherwise: II.B: VERTICAL scan else {
+		 * II.B.1: Disappearing Minutia if (appearing != ILfs.APPEARING) { Ex. ? 0 0 ? 1
+		 * 0 0 0 Ridge flow is down and to the right, whereas actual ridge is running up
+		 * and to the left. Thus: VERTICAL : disappearing : should be OPPOSITE the ridge
+		 * flow direction. iDir += nDirs; } Otherwise: II.B.2: Appearing Minutia Ex. 0 0
+		 * 0 1 ? 0 0 ? Ridge flow is down and to the right, which should be same
+		 * direction the ridge is projecting. Thus: VERTICAL : appearing : should be be
+		 * the SAME as ridge flow direction. } // End else VERTICAL scan } // End else
+		 * Quadrant II
+		 */
+		if (addOffset) {
+			iDir += nDirs;
+		}
 
 		/* Return resulting direction on range [0..31]. */
 		return (iDir);
