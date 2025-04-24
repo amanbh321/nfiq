@@ -2968,6 +2968,7 @@ public class MinutiaHelper extends MindTct implements IMinutia {
 	 * - IMAP block direction nDirs - number of IMAP directions (in semicircle)
 	 * Return Code: New direction - bi-directonal integer direction on full circle
 	 *************************************************************************/
+	@SuppressWarnings("java:S125")
 	public int getLowCurvatureDirection(int scanDir, int appearing, int nInputBlockImageMapValue, int nDirs) {
 		int iDir;
 

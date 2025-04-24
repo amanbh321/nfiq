@@ -1003,6 +1003,7 @@ public class RemoveMinutia extends MindTct implements IRemoveMinutia {
 	 * list of pruned minutiae Return Code: Zero - successful completion Negative -
 	 * system error
 	 **************************************************************************/
+	@SuppressWarnings("java:S1066")
 	public int removeMalformations(AtomicReference<Minutiae> oMinutiae, int[] binarizedImageData, int imageWidth,
 			int imageHeight, AtomicIntegerArray oLowFlowMap, int mappedImageWidth, int mappedImageHeight,
 			LfsParams lfsParams) {
