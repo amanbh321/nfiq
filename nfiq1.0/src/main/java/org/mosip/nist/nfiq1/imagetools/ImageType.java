@@ -49,6 +49,7 @@ public class ImageType extends ImageTools {
 		return ret;
 	}
 
+	@SuppressWarnings("java:S1172")
 	public int isWSQ(byte[] imageData, final int imageLength) {
 		int ret = 0;
 		// If the first two bytes are 0xFF and 0xA0 and the last two bytes are 0xFF and
@@ -62,6 +63,7 @@ public class ImageType extends ImageTools {
 		return (ret);
 	}
 
+	@SuppressWarnings("java:S1172")
 	public int isJP2000(byte[] imageData, final int imageLength) {
 		int ret = 0;
 		int nptrIndex = 4;
