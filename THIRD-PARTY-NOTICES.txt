@@ -103,7 +103,7 @@ Homepage: http://www.slf4j.org
 Package: JAI ImageIO JPEG2000
 Name: com.github.jai-imageio:jai-imageio-jpeg2000
 Version: 1.3.0
-License: JJ2000 License AND BSD-3-Clause License (with nuclear disclaimer)
+License: Dual License – JJ2000 Open Source License AND BSD-3-Clause (with Nuclear Use Restriction Clause)
 Homepage: https://github.com/jai-imageio/jai-imageio-core
 ================================================================================
 
