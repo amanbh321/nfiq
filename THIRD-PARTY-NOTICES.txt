@@ -48,9 +48,9 @@ Homepage: http://www.slf4j.org
 ================================================================================
 
 ================================================================================
-Package: Git Commit ID Plugin
+Package: pl.project13.maven:git-commit-id-plugin
 Version: 3.0.1
-License: Apache License 2.0
+License: LGPL-3.0
 Homepage: https://github.com/git-commit-id/git-commit-id-maven-plugin
 ================================================================================
 
@@ -120,6 +120,13 @@ Package: Apache Maven Surefire Plugin
 Version: 2.22.0
 License: Apache License 2.0
 Homepage: https://maven.apache.org/plugins/maven-surefire-plugin/
+================================================================================
+
+================================================================================
+Package: org.junit.vintage:junit-vintage-engine
+Version: Not specified
+License: EPL-2.0 (Inferred)
+Homepage: https://junit.org
 ================================================================================
 
 Full license texts and additional details for each of the above packages are available in the license/ directory of this repository. Please refer to those files or the original source of each package for complete legal terms and conditions.
