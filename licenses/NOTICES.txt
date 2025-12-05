@@ -2,48 +2,96 @@
 COPYRIGHT NOTICES
 ================================================================================
 
-================================================================================
-1. MIT LICENSE (Lombok, SLF4J)
-================================================================================
-- Original copyright notice with years and copyright holder
-- Full MIT license text including permission notice
-- "THE SOFTWARE IS PROVIDED 'AS IS'" disclaimer
+This software incorporates components from the projects listed below. The
+original copyright notices have been preserved in accordance with the terms
+of their respective licenses:
+
+Project Lombok
+  Copyright (C) 2009-2021 The Project Lombok Authors
+  Licensed under the MIT License
+
+SLF4J API
+  Copyright (c) 2004-2022 QOS.ch Sarl (Switzerland)
+  Licensed under the MIT License
+
+SLF4J Log4j12 Binding
+  Copyright (c) 2004-2022 QOS.ch Sarl (Switzerland)
+  Licensed under the MIT License
+
+Apache Commons Lang3
+  Copyright 2001-2023 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+JNBIS (Java NIST Biometric Image Software)
+  Copyright 2011 Michael H. Shams
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Compiler Plugin
+  Copyright 2001-2023 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Source Plugin
+  Copyright 2002-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Javadoc Plugin
+  Copyright 2005 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven GPG Plugin
+  Copyright 2001-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven JAR Plugin
+  Copyright 2001-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Dependency Plugin
+  Copyright 2001-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Surefire Plugin
+  Copyright 2004-2018 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Deploy Plugin
+  Copyright 2001-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+Apache Maven Resources Plugin
+  Copyright 2001-2024 The Apache Software Foundation
+  Licensed under the Apache License, Version 2.0
+
+JaCoCo Maven Plugin
+  Copyright (c) 2009, 2025 Mountainminds GmbH & Co. KG and Contributors
+  Licensed under the Eclipse Public License 2.0
+
+Git Commit ID Maven Plugin
+  Copyright (C) 2012-2016 Konrad Malawski and Contributors
+  Licensed under the GNU Lesser General Public License v3.0
+
+SonarQube Maven Plugin
+  Copyright (C) 2009-2024 SonarSource SA
+  Licensed under the GNU Lesser General Public License v3.0
+
+JAI ImageIO JPEG2000
+  Copyright (c) 1999-2000 JJ2000 Partners
+  Copyright (c) 2005-2015 Sun Microsystems, Inc. and Contributors
+  Licensed under JJ2000 License AND BSD 3-Clause License
+
+Sonatype Central Publishing Maven Plugin
+  Copyright (c) 2022-present Sonatype, Inc.
+  Licensed under the Apache License, Version 2.0
+
+MOSIP Kernel BOM
+  Copyright (c) 2018-2024 MOSIP
+  Licensed under the Mozilla Public License 2.0
+
+MOSIP Biometrics Utility
+  Copyright (c) 2018-2024 MOSIP
+  Licensed under the Mozilla Public License 2.0
+
+For complete license texts, please refer to the respective project homepages
+listed in the package information above.
 
 ================================================================================
-2. APACHE LICENSE 2.0 (Maven Plugins, Commons, JNBIS, Sonatype)
-================================================================================
-- Copyright notice: "Copyright [years] The Apache Software Foundation"
-- Statement: "This product includes software developed at The Apache Software Foundation"
-- Full Apache License 2.0 text (available at http://www.apache.org/licenses/LICENSE-2.0)
-- NOTICE file content (if the dependency includes one)
-- Attribution for any modifications you made
-
-================================================================================
-3. ECLIPSE PUBLIC LICENSE 2.0 (JaCoCo, JUnit)
-================================================================================
-- Original copyright notice: "Copyright (c) [years] [holder] and Contributors"
-- Full EPL-2.0 license text (available at https://www.eclipse.org/legal/epl-2.0/)
-- SPDX identifier: EPL-2.0
-
-================================================================================
-4. GNU LGPL 3.0 (Git-commit-id-plugin, Sonar)
-================================================================================
-- Copyright notice with year and holder
-- Full LGPL-3.0 license text (available at http://www.gnu.org/licenses/lgpl.txt)
-- Notice about source code availability
-- Instructions for obtaining source code
-
-================================================================================
-5. JJ2000 + BSD-3-Clause (JAI ImageIO JPEG2000)
-================================================================================
-- Both copyright notices (JJ2000 Partners + Sun Microsystems)
-- Full JJ2000 license text
-- Full BSD-3-Clause license text with nuclear disclaimer
-- Both disclaimers preserved
-
-================================================================================
-6. MOZILLA PUBLIC LICENSE 2.0 (MOSIP packages)
-================================================================================
-- Copyright notice for MOSIP Project
-- Full MPL-2.0 license text (available at https://www.mozilla.org/en-US/MPL/2.0/)
-- Source code disclosure notice
