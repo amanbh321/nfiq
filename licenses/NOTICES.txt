@@ -1,0 +1,49 @@
+================================================================================
+COPYRIGHT NOTICES
+================================================================================
+
+================================================================================
+1. MIT LICENSE (Lombok, SLF4J)
+================================================================================
+- Original copyright notice with years and copyright holder
+- Full MIT license text including permission notice
+- "THE SOFTWARE IS PROVIDED 'AS IS'" disclaimer
+
+================================================================================
+2. APACHE LICENSE 2.0 (Maven Plugins, Commons, JNBIS, Sonatype)
+================================================================================
+- Copyright notice: "Copyright [years] The Apache Software Foundation"
+- Statement: "This product includes software developed at The Apache Software Foundation"
+- Full Apache License 2.0 text (available at http://www.apache.org/licenses/LICENSE-2.0)
+- NOTICE file content (if the dependency includes one)
+- Attribution for any modifications you made
+
+================================================================================
+3. ECLIPSE PUBLIC LICENSE 2.0 (JaCoCo, JUnit)
+================================================================================
+- Original copyright notice: "Copyright (c) [years] [holder] and Contributors"
+- Full EPL-2.0 license text (available at https://www.eclipse.org/legal/epl-2.0/)
+- SPDX identifier: EPL-2.0
+
+================================================================================
+4. GNU LGPL 3.0 (Git-commit-id-plugin, Sonar)
+================================================================================
+- Copyright notice with year and holder
+- Full LGPL-3.0 license text (available at http://www.gnu.org/licenses/lgpl.txt)
+- Notice about source code availability
+- Instructions for obtaining source code
+
+================================================================================
+5. JJ2000 + BSD-3-Clause (JAI ImageIO JPEG2000)
+================================================================================
+- Both copyright notices (JJ2000 Partners + Sun Microsystems)
+- Full JJ2000 license text
+- Full BSD-3-Clause license text with nuclear disclaimer
+- Both disclaimers preserved
+
+================================================================================
+6. MOZILLA PUBLIC LICENSE 2.0 (MOSIP packages)
+================================================================================
+- Copyright notice for MOSIP Project
+- Full MPL-2.0 license text (available at https://www.mozilla.org/en-US/MPL/2.0/)
+- Source code disclosure notice
